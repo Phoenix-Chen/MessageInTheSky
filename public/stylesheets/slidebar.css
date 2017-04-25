@@ -1,0 +1,82 @@
+.nav-tabs {
+    border-bottom: 0;
+}
+
+.menu-icon {
+    width: 48px;
+    height: 48px;
+    background: url("../images/menu-icon.png") no-repeat center center;
+    background-size: cover;
+    margin: 10px;
+}
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    right: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+.profile-frame {
+    height: 200px;
+    width: 100%;
+}
+
+#profile-pic {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background: url("../images/profile.png") no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+#myMessage > .modal-dialog > .modal-content {
+    background-color: #262626;
+    color: #fff;
+}
+
+.modal-header > h4 {
+    text-align: center;
+}
+
+.close, .close:focus, .close:hover {
+    color: #fff;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Message In The Sky</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="@routes.Assets.versioned("stylesheets/index.css")" rel="stylesheet">
+
+        <!-- Javascript Routes -->
+        <script type="text/javascript" src='@routes.HomeController.javascriptRoutes()'></script>
+    </head>
+    <body>
+
+            @indexnav()
+
+            <div class="parallax">
+                <div class="parallax-section">
+                    <div class="parallax-layer parallax-layer-base">
+                        <div class="container">
+                            <div class="vertical-center">
+                                <h1>Message In The Sky</h1>
+                                <h3>Launch your message to the galaxy.</h3>
+                                <button type="button" class="btn" data-toggle="modal" data-target="#signupModal">Join Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="parallax-layer parallax-layer-back"></div>
+                </div>
+                <div class="content">
+                    <div class="container">
+                        <div class="infobox-1">
+                            <h3>What is Message In The Sky?</h3>
+                            <p>Message in the Sky is a public participatory media art project proposed by Professor Jiayi Young.  The project aims to collect people’s hopes and dreams then symbolically send them into the sky (galaxy).</p>
+                        </div>
+                        <div class="infobox-2 row">
+                            <div class="infobox-2-left col-md-6">
+                                <h3>Send your blessing up high</h3>
+                                <p>Message in the Sky is a public participatory media art project proposed by Professor Jiayi Young.  The project aims to collect people’s hopes and dreams then symbolically send them into the sky (galaxy).</p>
+                            </div><div class="infobox-2-right col-md-6">
+                            <h3>Feel the love</h3>
+                            <p>Message in the Sky is a public participatory media art project proposed by Professor Jiayi Young.  The project aims to collect people’s hopes and dreams then symbolically send them into the sky (galaxy).</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- jQuery -->
+        <script src="@routes.Assets.versioned("javascripts/jquery-3.1.0.min.js")"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="@routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
+
+        <!-- Custom JavaScript -->
+        <script src="@routes.Assets.versioned("javascripts/indexnav.js")"></script>
+    </body>
+</html>

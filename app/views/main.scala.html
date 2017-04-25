@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Message In The Sky</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")" rel="stylesheet">
+    
+    <!-- Custom Css -->
+    <link href="@routes.Assets.versioned("stylesheets/main.css")" rel="stylesheet">
+
+    <!-- Javascript Routes -->
+    <script type="text/javascript" src='@routes.HomeController.javascriptRoutes()'></script>
+</head>
+<body>
+    <div class="container">
+        <div id="earth_div"></div>
+        @slidebar()
+        <!-- Start of Add Icon -->
+        <div id="add-message-icon" data-toggle="modal" data-target="#addMessage"></div>
+        <!--div class="modal fade" id="addMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Wish</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="addMessageTextarea">Send Your Wishes:</label>
+                            <textarea class="form-control" id="addMessageTextarea" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="addMessageBtn" type="button" class="btn btn-info">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div-->
+        <div class="modal fade" id="addMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+             <div class="panel panel-login modal-dialog">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-6">
+                             <a href="#" class="active" id="login-form-link">Text</a>
+                         </div>
+                         <div class="col-xs-6">
+                             <a href="#" id="register-form-link">Audio</a>
+                         </div>
+                     </div>
+                     <hr>
+                 </div>
+                 <div class="panel-body">
+                     <div class="row">
+                         <div class="col-lg-12">
+                             <form id="login-form" action="" method="post" role="form" style="display: block;">
+                                 <div class="form-group">
+                                     <label for="addMessageTextarea">Send Your Wishes:</label>
+                                     <textarea class="form-control" id="addMessageTextarea" rows="5"></textarea>
+                                 </div>
+                                 <div class="form-group">
+                                     <div class="row">
+                                         <div class="col-sm-6 col-sm-offset-3">
+                                             <button id="addMessageBtn" type="button" class="btn btn-info">Send</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </form>
+                             <form id="register-form" role="form" style="display: none;">
+                                 <div class="form-inline">
+                                     <div class="form-group">
+                                         <input type="file" id="file" name="file" />
+                                     </div>
+                                     <input type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</input>
+                                 </div>
+                             </form>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!-- End of Add Icon-->
+
+    </div>
+    <!-- jQuery -->
+    <script src="@routes.Assets.versioned("javascripts/jquery-3.1.0.min.js")"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="@routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
+    
+    <!-- React.JS Core JavaScript>
+    <script src="@routes.Assets.versioned("javascripts/react.min.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/react-dom.min.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/react-with-addons.min.js")"></script-->
+
+    <!-- Web GL Earth JavaScript -->
+    <script src="@routes.Assets.versioned("javascripts/webglearth.js")"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="@routes.Assets.versioned("javascripts/slidebar.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/main.js")"></script>
+</body>
+</html>
