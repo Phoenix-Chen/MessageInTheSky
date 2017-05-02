@@ -103,6 +103,9 @@ public class MySQL {
 
         // Create Message Table
         createTable("CREATE TABLE message (post_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, act_id INT, content TEXT, longitude DECIMAL(9,6), latitude DECIMAL(9,6), post_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+
+        // Create Audio Table
+        createTable("CREATE TABLE audio (post_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, act_id INT, sha1 CHAR(40), longitude DECIMAL(9,6), latitude DECIMAL(9,6), post_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
     }
 
     private static boolean createTable(String query) {
@@ -208,6 +211,53 @@ public class MySQL {
         return success;
     }
 
+    public static boolean addAudio (String act_id, String SHA1, double longitude, double latitude) {
+        Connection conn = null;
+        Statement stmt = null;
+        boolean success = false;
+
+        try {
+            conn = DriverManager.getConnection(sqlUrl + "/" + sqlDBName + "?useSSL=false", sqlUser, sqlPassword);
+
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO audio (act_id, sha1, longitude, latitude) VALUES('" + act_id + "', '" + SHA1 + "', '" + longitude + "', '" + latitude + "')");
+            success = true;
+
+        } catch (SQLException ex) {
+            // handle any errors
+            Logger.error("SQLException: " + ex.getMessage());
+            Logger.error("SQLState: " + ex.getSQLState());
+            Logger.error("VendorError: " + ex.getErrorCode());
+            Logger.error("Error occur when adding audio for: " + act_id);
+        } catch (Exception e) {
+            Logger.error(e.getMessage());
+        } finally {
+            // it is a good idea to release
+            // resources in a finally{} block
+            // in reverse-order of their creation
+            // if they are no-longer needed
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                stmt = null;
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                conn = null;
+            }
+        }
+        return success;
+    }
 
     public static String getMessage() {
         Connection conn = null;
@@ -271,6 +321,70 @@ public class MySQL {
         //Logger.info(message_json);
         return message_json;
     }
+
+    public static String getAudio() {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String audio_json = "{ \"audio\":[ ";
+
+        try {
+            conn = DriverManager.getConnection(sqlUrl + "/" + sqlDBName + "?useSSL=false", sqlUser, sqlPassword);
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM audio");
+
+            while (rs.next()) {
+                audio_json = audio_json + "{\"audio\":\"" + rs.getString("sha1")
+                        + "\",\"longitude\":\"" + rs.getDouble("longitude")
+                        + "\",\"latitude\":\"" + rs.getDouble("latitude") + "\"},";
+            }
+        } catch (SQLException ex) {
+            // handle any errors
+            Logger.error("SQLException: " + ex.getMessage());
+            Logger.error("SQLState: " + ex.getSQLState());
+            Logger.error("VendorError: " + ex.getErrorCode());
+            Logger.error("Error getting audio...");
+        } catch (Exception e) {
+            Logger.error(e.getMessage());
+        } finally {
+            // it is a good idea to release
+            // resources in a finally{} block
+            // in reverse-order of their creation
+            // if they are no-longer needed
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    // ignore
+                }
+            }
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                stmt = null;
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                conn = null;
+            }
+        }
+
+        audio_json = audio_json.substring(0, audio_json.length() - 1) + "]}";
+        //Logger.info(message_json);
+        return audio_json;
+    }
+
 
     /**
      * Check if the email is already in the database
