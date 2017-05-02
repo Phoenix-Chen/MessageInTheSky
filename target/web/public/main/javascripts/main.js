@@ -27,26 +27,23 @@ $(document).ready(function(){
     getLocation();
     initEarth();
     $('#addMessageBtn').click(function(){addMessage();});
-    setMessages();
+
     //addMarker(38,121,'233333');
     //console.log(lon);
-    $('#login-form-link').click(function(e) {
-    		$("#login-form").delay(100).fadeIn(100);
-     		$("#register-form").fadeOut(100);
-    		$('#register-form-link').removeClass('active');
-    		$(this).addClass('active');
-    		e.preventDefault();
-    	});
-    	$('#register-form-link').click(function(e) {
-    		$("#register-form").delay(100).fadeIn(100);
-     		$("#login-form").fadeOut(100);
-    		$('#login-form-link').removeClass('active');
-    		$(this).addClass('active');
-    		e.preventDefault();
-    	});
-
-
-
+    $('#message-form-link').click(function(e) {
+    	$("#message-form").delay(100).fadeIn(100);
+     	$("#audio-form").fadeOut(100);
+    	$('#audio-form-link').removeClass('active');
+    	$(this).addClass('active');
+   		e.preventDefault();
+    });
+    $('#audio-form-link').click(function(e) {
+    	$("#audio-form").delay(100).fadeIn(100);
+     	$("#message-form").fadeOut(100);
+   		$('#message-form-link').removeClass('active');
+   		$(this).addClass('active');
+    	e.preventDefault();
+    });
 
     $('#js-upload-submit').click(function (event) {
        event.preventDefault();
@@ -72,6 +69,8 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    setMessages();
 });
 
 var initEarth = function() {
