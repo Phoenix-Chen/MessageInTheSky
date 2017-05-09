@@ -41,7 +41,8 @@ public class HomeController extends Controller {
                         routes.javascript.Message.addMessage(),
                         routes.javascript.Message.getMessage(),
                         routes.javascript.Message.getMyMessage(),
-                        routes.javascript.Audio.upload()
+                        routes.javascript.Audio.upload(),
+                        routes.javascript.Audio.getAudio()
                 )
         ).as("text/javascript");
     }

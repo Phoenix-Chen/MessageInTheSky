@@ -9,6 +9,7 @@ function getLocation() {
         alert("Geolocation is not supported by this browser.");
     }
     //alert(lon);
+
 }
 
 function updateLocation(position) {
@@ -47,9 +48,15 @@ $(document).ready(function(){
 
     $('#js-upload-submit').click(function (event) {
        event.preventDefault();
+       if (lat == null || lon == null) {
+            alert('Cannot get your location...')
+            return;
+        }
        var file = $('#file').get(0).files[0];
        var formData = new FormData();
        formData.append('file', file);
+       formData.append('lat', lat);
+       formData.append('lon', lon);
        $.ajax({
            url: 'upload',
            data: formData,
@@ -69,8 +76,13 @@ $(document).ready(function(){
         });
         return false;
     });
+//    audiojs.events.ready(function() {
+//        var as = audiojs.createAll();
+//      });
 
     setMessages();
+    setAudio();
+
 });
 
 var initEarth = function() {
@@ -152,9 +164,32 @@ function addMessage() {
     });
 }
 
+var setAudio = function() {
+   JsRoutes.controllers.Audio.getAudio().ajax({
+       success : function(data) {
+           if (data != null && data != '') {
+               var obj = JSON.parse(data);
+                   var audio = obj.audio;
 
+                   for (var i = 0; i < audio.length; i++) {
+                       addAudioMarker(parseFloat(audio[i].latitude), parseFloat(audio[i].longitude), audio[i].audio);
+                   }
+           } else {
+               alert("Sorry, data cannot be load...");
+           }
+       }
+   });
+}
 
-//$(window).bind("load", function() {
-//   setMessages();
-//});
+function addAudioMarker(lon, lat, audio) {
+   var marker = WE.marker([lat, lon], '/assets/images/custom_pin2.png', 25, 41).addTo(earth);
+   //marker.bindPopup("<audio src='http://localhost:9000/assets/sha1/" + audio +".mp3' preload='auto' />", {maxWidth: 150, closeButton: true});
+   marker.bindPopup("<img src='/assets/images/favicon.png' id='play-" + audio + "'>",{maxWidth: 50, closeButton: true});
+   $('#play-'+audio).click(function() { playAudio(audio); });
+}
+
+function playAudio(filename) {
+    var audio = new Audio('/assets/sha1/' + filename +'.mp3');
+    audio.play();
+}
 
