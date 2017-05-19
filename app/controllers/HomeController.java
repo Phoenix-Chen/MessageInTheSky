@@ -40,7 +40,7 @@ public class HomeController extends Controller {
                         routes.javascript.Account.logout(),
                         routes.javascript.Message.addMessage(),
                         routes.javascript.Message.getMessage(),
-                        routes.javascript.Message.getMyMessage(),
+                        routes.javascript.Message.getHistory(),
                         routes.javascript.Audio.upload(),
                         routes.javascript.Audio.getAudio()
                 )

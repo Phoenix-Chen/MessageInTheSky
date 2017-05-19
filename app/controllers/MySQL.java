@@ -385,6 +385,78 @@ public class MySQL {
         return audio_json;
     }
 
+    public static String getHistory(String uid) {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String history_json = "{ \"history\":[ ";
+
+        try {
+            conn = DriverManager.getConnection(sqlUrl + "/" + sqlDBName + "?useSSL=false", sqlUser, sqlPassword);
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM audio WHERE act_id = " + uid + " ORDER BY post_time ASC");
+
+            while (rs.next()) {
+                history_json = history_json + "{\"type\" : \"audio\", \"audio\" : \"" + rs.getString("sha1")
+                        + "\",\"post_time\":\"" + rs.getTimestamp("post_time")
+                        + "\", \"longitude\" : \"" + rs.getDouble("longitude")
+                        + "\", \"latitude\" : \"" + rs.getDouble("latitude") + "\"},";
+            }
+
+            rs = stmt.executeQuery("SELECT * FROM message WHERE act_id = " + uid + " ORDER BY post_time ASC");
+
+            while (rs.next()) {
+                history_json = history_json + "{\"type\" : \"text\", \"content\":\"" + rs.getString("content")
+                        + "\",\"post_time\":\"" + rs.getTimestamp("post_time")
+                        + "\",\"longitude\":\"" + rs.getDouble("longitude")
+                        + "\",\"latitude\":\"" + rs.getDouble("latitude") + "\"},";
+            }
+        } catch (SQLException ex) {
+            // handle any errors
+            Logger.error("SQLException: " + ex.getMessage());
+            Logger.error("SQLState: " + ex.getSQLState());
+            Logger.error("VendorError: " + ex.getErrorCode());
+            Logger.error("Error getting audio...");
+        } catch (Exception e) {
+            Logger.error(e.getMessage());
+        } finally {
+            // it is a good idea to release
+            // resources in a finally{} block
+            // in reverse-order of their creation
+            // if they are no-longer needed
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    // ignore
+                }
+            }
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                stmt = null;
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                conn = null;
+            }
+        }
+
+        history_json = history_json.substring(0, history_json.length() - 1) + "]}";
+        //Logger.info(history_json);
+        return history_json;
+    }
 
     /**
      * Check if the email is already in the database

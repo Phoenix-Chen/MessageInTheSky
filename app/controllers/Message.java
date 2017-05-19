@@ -34,7 +34,8 @@ public class Message extends Controller {
         return ok(MySQL.getMessage());
     }
 
-    public Result getMyMessage() {
-        return ok("");
+    public Result getHistory() {
+        String act_id = session("mitsconnect");
+        return ok(MySQL.getHistory(act_id));
     }
 }
