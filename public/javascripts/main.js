@@ -116,6 +116,7 @@ var initEarth = function() {
     }).addTo(earth);
 
     // Start a simple rotation animation
+    /*
     var before = null;
     requestAnimationFrame(function animate(now) {
         var c = earth.getPosition();
@@ -124,7 +125,7 @@ var initEarth = function() {
         earth.setCenter([c[0], c[1] + 0.1 * (elapsed / 30)]);
         requestAnimationFrame(animate);
     });
-
+*/
     earth.setView([51.505, 0], 2);
     //setMessages();
     //console.log(lon);
@@ -153,6 +154,12 @@ function addMarker(lon, lat, message) {
     marker.bindPopup("<b>Message In The Sky</b><br></br><span style='font-size:10px;color:#999'>" + message + "</span>", {
         maxWidth: 150,
         closeButton: true
+    });
+    marker.on('mouseover', function(event){
+        marker.openPopup();
+    });
+    marker.on('mouseout', function(event){
+        marker.closePopup();
     });
     //alert(message);
 }
@@ -190,6 +197,7 @@ var setAudio = function() {
                 var audio = obj.audio;
 
                 for (var i = 0; i < audio.length; i++) {
+                    console.log(i);
                     addAudioMarker(parseFloat(audio[i].latitude), parseFloat(audio[i].longitude), audio[i].audio);
                 }
             } else {
@@ -213,5 +221,6 @@ function addAudioMarker(lon, lat, audio) {
 
 function playAudio(filename) {
     var audio = new Audio('/assets/sha1/' + filename + '.mp3');
+    console.log(filename);
     audio.play();
 }
