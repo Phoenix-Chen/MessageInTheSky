@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="gax-grpc-0.17.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/gax-grpc-0.17.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

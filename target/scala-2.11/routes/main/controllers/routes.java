@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/phoenixchen/Documents/websites/MessageInTheSky/conf/routes
-// @DATE:Tue Apr 25 11:24:14 PDT 2017
+// @DATE:Tue May 30 04:21:18 PDT 2017
 
 package controllers;
 

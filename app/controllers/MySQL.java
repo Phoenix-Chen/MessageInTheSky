@@ -106,6 +106,9 @@ public class MySQL {
 
         // Create Audio Table
         createTable("CREATE TABLE audio (post_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, act_id INT, sha1 CHAR(40), longitude DECIMAL(9,6), latitude DECIMAL(9,6), post_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+
+        // Create Negative Message Table
+        createTable("CREATE TABLE negative_message (post_id INT NOT NULL PRIMARY KEY)");
     }
 
     private static boolean createTable(String query) {
@@ -163,18 +166,19 @@ public class MySQL {
      * @param latitude
      * @return
      */
-    public static boolean addMessage(String act_id, String content, double longitude, double latitude) {
+    public static int addMessage(String act_id, String content, double longitude, double latitude) {
         Connection conn = null;
         Statement stmt = null;
-        boolean success = false;
+        //boolean success = false;
+        int post_id = -1;
 
         try {
             conn = DriverManager.getConnection(sqlUrl + "/" + sqlDBName + "?useSSL=false", sqlUser, sqlPassword);
 
             stmt = conn.createStatement();
 
-            stmt.executeUpdate("INSERT INTO message (act_id, content, longitude, latitude) VALUES('" + act_id + "', '" + content.replace("\n","<br />") + "', '" + longitude + "', '" + latitude + "')");
-            success = true;
+            post_id = stmt.executeUpdate("INSERT INTO message (act_id, content, longitude, latitude) VALUES('" + act_id + "', '" + content.replace("\n","<br />") + "', '" + longitude + "', '" + latitude + "')", Statement.RETURN_GENERATED_KEYS);
+            //success = true;
 
         } catch (SQLException ex) {
             // handle any errors
@@ -208,7 +212,7 @@ public class MySQL {
                 conn = null;
             }
         }
-        return success;
+        return post_id;
     }
 
     public static boolean addAudio (String act_id, String SHA1, double longitude, double latitude) {
@@ -665,5 +669,53 @@ public class MySQL {
             }
         }
         return passNsalt;
+    }
+
+    public static boolean addNegativeMessage(int post_id){
+        Connection conn = null;
+        Statement stmt = null;
+        boolean success = false;
+
+        try {
+            conn = DriverManager.getConnection(sqlUrl + "/" + sqlDBName + "?useSSL=false", sqlUser, sqlPassword);
+
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO negative_message (post_id) VALUES('" + post_id + "')");
+            success = true;
+
+        } catch (SQLException ex) {
+            // handle any errors
+            Logger.error("SQLException: " + ex.getMessage());
+            Logger.error("SQLState: " + ex.getSQLState());
+            Logger.error("VendorError: " + ex.getErrorCode());
+            Logger.error("Error occur when adding negative message for: " + post_id);
+        } catch (Exception e) {
+            Logger.error(e.getMessage());
+        } finally {
+            // it is a good idea to release
+            // resources in a finally{} block
+            // in reverse-order of their creation
+            // if they are no-longer needed
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                stmt = null;
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                conn = null;
+            }
+        }
+        return success;
     }
 }

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="proto-google-cloud-language-v1-0.1.11">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/proto-google-cloud-language-v1-0.1.11.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

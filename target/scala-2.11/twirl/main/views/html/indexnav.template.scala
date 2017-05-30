@@ -141,7 +141,7 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 object indexnav extends indexnav_Scope0.indexnav
               /*
                   -- GENERATED --
-                  DATE: Tue Apr 25 11:24:14 PDT 2017
+                  DATE: Tue May 30 04:21:18 PDT 2017
                   SOURCE: /Users/phoenixchen/Documents/websites/MessageInTheSky/app/views/indexnav.scala.html
                   HASH: 8071f513d555059f170dbf85d47be8c38ee3a300
                   MATRIX: 833->0|940->81|954->87|1019->132

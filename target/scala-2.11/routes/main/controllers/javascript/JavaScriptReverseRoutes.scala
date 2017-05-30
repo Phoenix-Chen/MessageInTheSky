@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/phoenixchen/Documents/websites/MessageInTheSky/conf/routes
-// @DATE:Tue Apr 25 11:24:14 PDT 2017
+// @DATE:Tue May 30 04:21:18 PDT 2017
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -27,8 +27,8 @@ package controllers.javascript {
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
-        function(file1) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[PathBindable[Asset]].javascriptUnbind + """)("file", file1)})
+        function(file) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[PathBindable[Asset]].javascriptUnbind + """)("file", file)})
         }
       """
     )
@@ -49,6 +49,16 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "upload"})
+        }
+      """
+    )
+  
+    // @LINE:27
+    def getAudio: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Audio.getAudio",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getaudio"})
         }
       """
     )
@@ -113,22 +123,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:21
-    def addMessage: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Message.addMessage",
+    // @LINE:23
+    def getHistory: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Message.getHistory",
       """
-        function(content0,lat1,lon2) {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "addmessage" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("content", content0), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("lat", lat1), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("lon", lon2)])})
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "gethistory"})
         }
       """
     )
   
-    // @LINE:23
-    def getMyMessage: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Message.getMyMessage",
+    // @LINE:21
+    def addMessage: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Message.addMessage",
       """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getmymessage"})
+        function(content,lat,lon) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "addmessage" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("content", content), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("lat", lat), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("lon", lon)])})
         }
       """
     )
@@ -157,8 +167,8 @@ package controllers.javascript {
     def signup: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Account.signup",
       """
-        function(email0,password1) {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "signup" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email0), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("password", password1)])})
+        function(email,password) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "signup" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("password", password)])})
         }
       """
     )
@@ -167,8 +177,8 @@ package controllers.javascript {
     def login: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Account.login",
       """
-        function(email0,password1) {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "login" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email0), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("password", password1)])})
+        function(email,password) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "login" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("password", password)])})
         }
       """
     )
