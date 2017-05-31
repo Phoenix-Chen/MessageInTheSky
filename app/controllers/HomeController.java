@@ -19,6 +19,9 @@ public class HomeController extends Controller {
     public static Result index() {
         String se = session("mitsconnect");
         if (se != null) {
+            if (se.equals("1")) {
+                return redirect("/admin");
+            }
             return redirect("/");
         }
         return ok(views.html.index.render());
@@ -29,7 +32,21 @@ public class HomeController extends Controller {
         if (se == null) {
             return redirect("/index");
         }
+        if (se.equals("1")) {
+            return redirect("/admin");
+        }
         return ok(views.html.main.render());
+    }
+
+    public static Result admin() {
+        String se = session("mitsconnect");
+        if (se != null) {
+            if (se.equals("1")) {
+                return ok(views.html.admin.render());
+            }
+            return redirect("/");
+        }
+        return redirect("/index");
     }
 
     public static Result javascriptRoutes() {
@@ -41,6 +58,8 @@ public class HomeController extends Controller {
                         controllers.routes.javascript.Message.addMessage(),
                         controllers.routes.javascript.Message.getMessage(),
                         controllers.routes.javascript.Message.getHistory(),
+                        controllers.routes.javascript.Message.getNegativeMessage(),
+                        controllers.routes.javascript.Message.deleteNegativeMessage(),
                         controllers.routes.javascript.Audio.upload(),
                         controllers.routes.javascript.Audio.getAudio()
                 )

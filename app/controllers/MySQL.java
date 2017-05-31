@@ -109,6 +109,9 @@ public class MySQL {
 
         // Create Negative Message Table
         createTable("CREATE TABLE negative_message (post_id INT NOT NULL PRIMARY KEY)");
+
+        // Create Super User
+        Account.signup("a@a.com","Aa>11111");
     }
 
     private static boolean createTable(String query) {
@@ -168,18 +171,22 @@ public class MySQL {
      */
     public static int addMessage(String act_id, String content, double longitude, double latitude) {
         Connection conn = null;
-        Statement stmt = null;
-        //boolean success = false;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         int post_id = -1;
 
         try {
             conn = DriverManager.getConnection(sqlUrl + "/" + sqlDBName + "?useSSL=false", sqlUser, sqlPassword);
 
-            stmt = conn.createStatement();
+            stmt = conn.prepareStatement("INSERT INTO message (act_id, content, longitude, latitude) VALUES('" + act_id + "', '" + content.replace("\n","<br />") + "', '" + longitude + "', '" + latitude + "')", PreparedStatement.RETURN_GENERATED_KEYS);
 
-            post_id = stmt.executeUpdate("INSERT INTO message (act_id, content, longitude, latitude) VALUES('" + act_id + "', '" + content.replace("\n","<br />") + "', '" + longitude + "', '" + latitude + "')", Statement.RETURN_GENERATED_KEYS);
-            //success = true;
+            stmt.executeUpdate();
 
+            rs = stmt.getGeneratedKeys();
+
+            if (rs.next()) {
+                post_id = rs.getInt(1);
+            }
         } catch (SQLException ex) {
             // handle any errors
             Logger.error("SQLException: " + ex.getMessage());
@@ -193,6 +200,14 @@ public class MySQL {
             // resources in a finally{} block
             // in reverse-order of their creation
             // if they are no-longer needed
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    // ignore
+                }
+            }
 
             if (stmt != null) {
                 try {
@@ -718,4 +733,119 @@ public class MySQL {
         }
         return success;
     }
+
+    public static String getNegativeMessage(){
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String message_json = "{ \"messages\":[ ";
+
+        try {
+            conn = DriverManager.getConnection(sqlUrl + "/" + sqlDBName + "?useSSL=false", sqlUser, sqlPassword);
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM negative_message");
+
+            while (rs.next()) {
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs2 = stmt2.executeQuery("SELECT * FROM message WHERE post_id = '" + Integer.toString(rs.getInt("post_id")) + "'");
+                while (rs2.next()) {
+                    message_json = message_json + "{\"content\":\"" + rs2.getString("content")
+                            + "\",\"post_id\":\"" + Integer.toString(rs2.getInt("post_id")) + "\"},";
+                }
+            }
+        } catch (SQLException ex) {
+            // handle any errors
+            Logger.error("SQLException: " + ex.getMessage());
+            Logger.error("SQLState: " + ex.getSQLState());
+            Logger.error("VendorError: " + ex.getErrorCode());
+            Logger.error("Error getting negative messages...");
+        } catch (Exception e) {
+            Logger.error(e.getMessage());
+        } finally {
+            // it is a good idea to release
+            // resources in a finally{} block
+            // in reverse-order of their creation
+            // if they are no-longer needed
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    // ignore
+                }
+            }
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                stmt = null;
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                conn = null;
+            }
+        }
+
+        message_json = message_json.substring(0, message_json.length() - 1) + "]}";
+        return message_json;
+    }
+
+    public static boolean deleteNegativeMessage(String post_id) {
+        Connection conn = null;
+        Statement stmt = null;
+        boolean success = false;
+
+        try {
+            conn = DriverManager.getConnection(sqlUrl + "/" + sqlDBName + "?useSSL=false", sqlUser, sqlPassword);
+
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("DELETE FROM negative_message WHERE post_id = '" + post_id + "'");
+            stmt.executeUpdate("DELETE FROM message WHERE post_id = '" + post_id + "'");
+            success = true;
+
+        } catch (SQLException ex) {
+            // handle any errors
+            Logger.error("SQLException: " + ex.getMessage());
+            Logger.error("SQLState: " + ex.getSQLState());
+            Logger.error("VendorError: " + ex.getErrorCode());
+            Logger.error("Error occur when deleting negative message: " + post_id);
+        } catch (Exception e) {
+            Logger.error(e.getMessage());
+        } finally {
+            // it is a good idea to release
+            // resources in a finally{} block
+            // in reverse-order of their creation
+            // if they are no-longer needed
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                stmt = null;
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                } // ignore
+
+                conn = null;
+            }
+        }
+        return success;
+    }
+
 }

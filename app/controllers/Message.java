@@ -70,4 +70,12 @@ public class Message extends Controller {
         }
         return score;
     }
+
+    public static Result getNegativeMessage() {
+        return ok(MySQL.getNegativeMessage());
+    }
+
+    public static Result deleteNegativeMessage(String post_id) {
+        return ok(Boolean.toString(MySQL.deleteNegativeMessage(post_id)));
+    }
 }
