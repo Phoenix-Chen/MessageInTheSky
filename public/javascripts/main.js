@@ -65,12 +65,12 @@ $(document).ready(function() {
             type: 'POST',
             contentType: false,
             processData: false,
-            beforeSend: function(data) {
-                alert('Are you sure you want to upload document?');
-            },
+           // beforeSend: function(data) {
+             //   alert('Are you sure you want to upload document?');
+            //},
             success: function(data) {
                 //call your jQuery action here
-                alert('Upload completed: ' + data);
+               // alert('Upload completed: ' + data);
                 location.reload();
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -142,7 +142,7 @@ var setMessages = function() {
                     addMarker(parseFloat(messages[i].latitude), parseFloat(messages[i].longitude), messages[i].content);
                 }
             } else {
-                alert("Sorry, data cannot be load...");
+                alert("Sorry, data cannot be loaded...");
             }
         }
     });
@@ -153,7 +153,7 @@ function addMarker(lon, lat, message) {
     var marker = WE.marker([lat, lon], '/assets/images/custom_pin1.png', 25, 41).addTo(earth);
     marker.bindPopup("<b>Message In The Sky</b><br></br><span style='font-size:10px;color:#999'>" + message + "</span>", {
         maxWidth: 150,
-        closeButton: true
+        closeButton: false
     });
     marker.on('mouseover', function(event){
         marker.openPopup();
@@ -212,9 +212,18 @@ function addAudioMarker(lon, lat, audio) {
     //marker.bindPopup("<audio src='http://localhost:9000/assets/sha1/" + audio +".mp3' preload='auto' />", {maxWidth: 150, closeButton: true});
     marker.bindPopup("<img src='/assets/images/favicon.png' id='play-" + audio + "'>", {
         maxWidth: 50,
-        closeButton: true
+        closeButton: false
     });
-    $('#play-' + audio).click(function() {
+
+    marker.on('mouseover', function(event){
+        marker.openPopup();
+    });
+    marker.on('mouseout', function(event){
+        marker.closePopup();
+    });
+
+    $('#play-' + audio).mouseover(function() {
+    //$('#play-' + audio).click(function() {
         playAudio(audio);
     });
 }
