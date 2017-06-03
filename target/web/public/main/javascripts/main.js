@@ -100,32 +100,49 @@ var initEarth = function() {
         //zoom: 2
     };
     earth = new WE.map('earth_div', options);
-    WE.tileLayer('http://data.webglearth.com/natural-earth-color/{z}/{x}/{y}.jpg', {
-        tileSize: 256,
-        bounds: [
-            [-85, -180],
-            [85, 180]
-        ],
-        minZoom: 0,
-        maxZoom: 16,
-        //attribution: 'WebGLEarth example',
-        tms: true
-    }).addTo(earth);
+//    WE.tileLayer('http://data.webglearth.com/natural-earth-color/{z}/{x}/{y}.jpg', {
+//        tileSize: 256,
+//        bounds: [
+//            [-85, -180],
+//            [85, 180]
+//        ],
+//        minZoom: 0,
+//        maxZoom: 16,
+//        //attribution: 'WebGLEarth example',
+//        tms: true
+//    }).addTo(earth);
+WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
+          minZoom: 0,
+          maxZoom: 5
+          //attribution: 'NASA'
+        }).addTo(earth);
     WE.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
-        opacity: 0.6
+        opacity: 0.3
     }).addTo(earth);
 
     // Start a simple rotation animation
-    var before = null;
-    requestAnimationFrame(function animate(now) {
-        var c = earth.getPosition();
-        var elapsed = before ? now - before : 0;
-        before = now;
-        earth.setCenter([c[0], c[1] + 0.1 * (elapsed / 30)]);
-        requestAnimationFrame(animate);
-    });
 
-    earth.setView([51.505, 0], 2);
+
+    //earth.setView([51.505, 0], 3);
+    earth.setView([40, 2], 5);
+
+
+    //var first_enter =
+//alert(earth.getZoom()*10);
+        var before = null;
+        requestAnimationFrame(function animate(now) {
+
+
+            var c = earth.getPosition();
+            var elapsed = before ? now - before : 0;
+            before = now;
+            //earth.setCenter([c[0], c[1] + 0.1 * (elapsed / 400)]);
+            earth.setView([c[0], c[1] + 0.1 * (elapsed / 400)]);
+            requestAnimationFrame(animate);
+            //earth.setHeading(300);
+            //earth.setTilt(50);
+            earth.setTilt(earth.getZoom()*9);
+        });
     //setMessages();
     //console.log(lon);
 }
