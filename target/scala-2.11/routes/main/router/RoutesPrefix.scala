@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/phoenixchen/Documents/websites/MessageInTheSky/conf/routes
-// @DATE:Tue Apr 25 11:24:14 PDT 2017
+// @SOURCE:/Users/michelle/IdeaProjects/MessageInTheSky/conf/routes
+// @DATE:Sat Jun 03 11:24:58 PDT 2017
 
 
 package router {

@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/phoenixchen/Documents/websites/MessageInTheSky/conf/routes
-// @DATE:Tue Apr 25 11:24:14 PDT 2017
+// @SOURCE:/Users/michelle/IdeaProjects/MessageInTheSky/conf/routes
+// @DATE:Sat Jun 03 11:24:58 PDT 2017
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -39,6 +39,12 @@ package controllers {
     def upload(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "upload")
+    }
+  
+    // @LINE:27
+    def getAudio(): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "getaudio")
     }
   
   }
@@ -83,16 +89,16 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "getmessage")
     }
   
+    // @LINE:23
+    def getHistory(): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "gethistory")
+    }
+  
     // @LINE:21
     def addMessage(content:String, lat:String, lon:String): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "addmessage" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("content", content)), Some(implicitly[QueryStringBindable[String]].unbind("lat", lat)), Some(implicitly[QueryStringBindable[String]].unbind("lon", lon)))))
-    }
-  
-    // @LINE:23
-    def getMyMessage(): Call = {
-      import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "getmymessage")
     }
   
   }

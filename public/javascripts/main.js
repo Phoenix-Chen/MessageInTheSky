@@ -151,9 +151,9 @@ var setMessages = function() {
 function addMarker(lon, lat, message) {
     //alert(typeof(lon));
     var marker = WE.marker([lat, lon], '/assets/images/custom_pin1.png', 25, 41).addTo(earth);
-    marker.bindPopup("<b>Message In The Sky</b><br></br><span style='font-size:10px;color:#999'>" + message + "</span>", {
+    marker.bindPopup("<span style='font-size:12px;color:#999'>" + message + "</span>", {
         maxWidth: 150,
-        closeButton: false
+        closeButton: false,
     });
     marker.on('mouseover', function(event){
         marker.openPopup();

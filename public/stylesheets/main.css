@@ -37,8 +37,12 @@ body {
 }
 
 
-
-
+.we-pp-wrapper,.we-pp-tip {
+	background:none;
+	box-shadow:0 0 rgba(0, 0, 0, 0);
+	-moz-box-shadow: 0 0 rgba(0, 0, 0, 0);
+	-webkit-box-shadow: 0 0 rgba(0, 0, 0, 0);
+}
 
 
 

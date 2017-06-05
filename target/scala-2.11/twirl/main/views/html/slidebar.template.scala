@@ -59,6 +59,12 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
             <h4 class="modal-title" id="myModalLabel">My Messages</h4>
           </div>
           <div class="modal-body" id="myMessageBody">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <ul class="timeline" id="timeline">
+                      </ul>
+                  </div>
+              </div>
           </div>
           <!--div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -89,9 +95,9 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 object slidebar extends slidebar_Scope0.slidebar
               /*
                   -- GENERATED --
-                  DATE: Tue Apr 25 11:24:14 PDT 2017
-                  SOURCE: /Users/phoenixchen/Documents/websites/MessageInTheSky/app/views/slidebar.scala.html
-                  HASH: 15f4a97dd0731b7071799a114ea80a97191cbc6e
+                  DATE: Sat Jun 03 11:24:59 PDT 2017
+                  SOURCE: /Users/michelle/IdeaProjects/MessageInTheSky/app/views/slidebar.scala.html
+                  HASH: b991766369bc0c9359d28684c4d9f0ed33568503
                   MATRIX: 833->0|940->81|954->87|1019->132
                   LINES: 32->1|36->5|36->5|36->5
                   -- GENERATED --

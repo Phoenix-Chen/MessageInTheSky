@@ -20,7 +20,8 @@ POST    /logout                     controllers.Account.logout()
 # Message api
 POST    /addmessage                 controllers.Message.addMessage(content: String, lat: String, lon: String)
 GET     /getmessage                 controllers.Message.getMessage()
-GET     /getmymessage               controllers.Message.getMyMessage()
+GET     /gethistory                 controllers.Message.getHistory()
 
 # Audio api
 POST    /upload                     controllers.Audio.upload()
+GET     /getaudio                   controllers.Audio.getAudio()

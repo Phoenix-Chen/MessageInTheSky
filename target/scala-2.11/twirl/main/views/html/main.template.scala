@@ -39,17 +39,16 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
     <!-- Bootstrap Core CSS -->
     <link href=""""),_display_(/*9.18*/routes/*9.24*/.Assets.versioned("stylesheets/bootstrap.min.css")),format.raw/*9.74*/("""" rel="stylesheet">
 
-    <!-- Custom Css -->
-    <link href=""""),_display_(/*12.18*/routes/*12.24*/.Assets.versioned("stylesheets/main.css")),format.raw/*12.65*/("""" rel="stylesheet">
+
 
     <!-- Javascript Routes -->
-    <script type="text/javascript" src='"""),_display_(/*15.42*/routes/*15.48*/.HomeController.javascriptRoutes()),format.raw/*15.82*/("""'></script>
+    <script type="text/javascript" src='"""),_display_(/*14.42*/routes/*14.48*/.HomeController.javascriptRoutes()),format.raw/*14.82*/("""'></script>
 </head>
 <body>
     <div class="container">
     <div id="earth_div"></div>
-    """),_display_(/*20.6*/slidebar()),format.raw/*20.16*/("""
-    """),format.raw/*21.5*/("""<!-- Start of Add Icon -->
+    """),_display_(/*19.6*/slidebar()),format.raw/*19.16*/("""
+    """),format.raw/*20.5*/("""<!-- Start of Add Icon -->
     <div id="add-message-icon" data-toggle="modal" data-target="#addMessage"></div>
     <div class="modal fade" id="addMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
@@ -98,17 +97,19 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 
     </div>
     <!-- jQuery -->
-    <script src=""""),_display_(/*70.19*/routes/*70.25*/.Assets.versioned("javascripts/jquery-3.1.0.min.js")),format.raw/*70.77*/(""""></script>
+    <script src=""""),_display_(/*69.19*/routes/*69.25*/.Assets.versioned("javascripts/jquery-3.1.0.min.js")),format.raw/*69.77*/(""""></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src=""""),_display_(/*73.19*/routes/*73.25*/.Assets.versioned("javascripts/bootstrap.min.js")),format.raw/*73.74*/(""""></script>
+    <script src=""""),_display_(/*72.19*/routes/*72.25*/.Assets.versioned("javascripts/bootstrap.min.js")),format.raw/*72.74*/(""""></script>
 
     <!-- Web GL Earth JavaScript -->
-    <script src=""""),_display_(/*76.19*/routes/*76.25*/.Assets.versioned("javascripts/webglearth.js")),format.raw/*76.71*/(""""></script>
+    <script src=""""),_display_(/*75.19*/routes/*75.25*/.Assets.versioned("javascripts/webglearth.js")),format.raw/*75.71*/(""""></script>
 
     <!-- Custom JavaScript -->
-    <script src=""""),_display_(/*79.19*/routes/*79.25*/.Assets.versioned("javascripts/slidebar.js")),format.raw/*79.69*/(""""></script>
-    <script src=""""),_display_(/*80.19*/routes/*80.25*/.Assets.versioned("javascripts/main.js")),format.raw/*80.65*/(""""></script>
+    <script src=""""),_display_(/*78.19*/routes/*78.25*/.Assets.versioned("javascripts/slidebar.js")),format.raw/*78.69*/(""""></script>
+    <script src=""""),_display_(/*79.19*/routes/*79.25*/.Assets.versioned("javascripts/main.js")),format.raw/*79.65*/(""""></script>
+    <!-- Custom Css -->
+    <link href=""""),_display_(/*81.18*/routes/*81.24*/.Assets.versioned("stylesheets/main.css")),format.raw/*81.65*/("""" rel="stylesheet">
 </body>
 </html>"""))
       }
@@ -130,11 +131,11 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 object main extends main_Scope0.main
               /*
                   -- GENERATED --
-                  DATE: Mon May 01 19:22:45 PDT 2017
-                  SOURCE: /Users/phoenixchen/Documents/websites/MessageInTheSky/app/views/main.scala.html
-                  HASH: fe84aefe4dffeae342edb52832db7be5708d2907
-                  MATRIX: 825->0|1007->156|1021->162|1091->212|1180->274|1195->280|1257->321|1377->414|1392->420|1447->454|1564->545|1595->555|1627->560|4009->2915|4024->2921|4097->2973|4194->3043|4209->3049|4279->3098|4374->3166|4389->3172|4456->3218|4545->3280|4560->3286|4625->3330|4682->3360|4697->3366|4758->3406
-                  LINES: 32->1|40->9|40->9|40->9|43->12|43->12|43->12|46->15|46->15|46->15|51->20|51->20|52->21|101->70|101->70|101->70|104->73|104->73|104->73|107->76|107->76|107->76|110->79|110->79|110->79|111->80|111->80|111->80
+                  DATE: Mon Jun 05 10:35:06 PDT 2017
+                  SOURCE: /Users/michelle/IdeaProjects/MessageInTheSky/app/views/main.scala.html
+                  HASH: 60e0603edeb3f96d89bdb466ce11edc3109d4593
+                  MATRIX: 825->0|1007->156|1021->162|1091->212|1213->307|1228->313|1283->347|1400->438|1431->448|1463->453|3845->2808|3860->2814|3933->2866|4030->2936|4045->2942|4115->2991|4210->3059|4225->3065|4292->3111|4381->3173|4396->3179|4461->3223|4518->3253|4533->3259|4594->3299|4674->3352|4689->3358|4751->3399
+                  LINES: 32->1|40->9|40->9|40->9|45->14|45->14|45->14|50->19|50->19|51->20|100->69|100->69|100->69|103->72|103->72|103->72|106->75|106->75|106->75|109->78|109->78|109->78|110->79|110->79|110->79|112->81|112->81|112->81
                   -- GENERATED --
               */
           

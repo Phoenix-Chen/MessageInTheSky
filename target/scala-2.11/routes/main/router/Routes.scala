@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/phoenixchen/Documents/websites/MessageInTheSky/conf/routes
-// @DATE:Tue Apr 25 11:24:14 PDT 2017
+// @SOURCE:/Users/michelle/IdeaProjects/MessageInTheSky/conf/routes
+// @DATE:Sat Jun 03 11:24:58 PDT 2017
 
 package router
 
@@ -64,8 +64,9 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """logout""", """controllers.Account.logout()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """addmessage""", """controllers.Message.addMessage(content:String, lat:String, lon:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """getmessage""", """controllers.Message.getMessage()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """getmymessage""", """controllers.Message.getMyMessage()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """gethistory""", """controllers.Message.getHistory()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """upload""", """controllers.Audio.upload()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """getaudio""", """controllers.Audio.getAudio()"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -227,19 +228,19 @@ class Routes(
   )
 
   // @LINE:23
-  private[this] lazy val controllers_Message_getMyMessage9_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("getmymessage")))
+  private[this] lazy val controllers_Message_getHistory9_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("gethistory")))
   )
-  private[this] lazy val controllers_Message_getMyMessage9_invoker = createInvoker(
-    Message_0.getMyMessage(),
+  private[this] lazy val controllers_Message_getHistory9_invoker = createInvoker(
+    Message_0.getHistory(),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.Message",
-      "getMyMessage",
+      "getHistory",
       Nil,
       "GET",
       """""",
-      this.prefix + """getmymessage"""
+      this.prefix + """gethistory"""
     )
   )
 
@@ -257,6 +258,23 @@ class Routes(
       "POST",
       """ Audio api""",
       this.prefix + """upload"""
+    )
+  )
+
+  // @LINE:27
+  private[this] lazy val controllers_Audio_getAudio11_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("getaudio")))
+  )
+  private[this] lazy val controllers_Audio_getAudio11_invoker = createInvoker(
+    Audio_3.getAudio(),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Audio",
+      "getAudio",
+      Nil,
+      "GET",
+      """""",
+      this.prefix + """getaudio"""
     )
   )
 
@@ -318,15 +336,21 @@ class Routes(
       }
   
     // @LINE:23
-    case controllers_Message_getMyMessage9_route(params) =>
+    case controllers_Message_getHistory9_route(params) =>
       call { 
-        controllers_Message_getMyMessage9_invoker.call(Message_0.getMyMessage())
+        controllers_Message_getHistory9_invoker.call(Message_0.getHistory())
       }
   
     // @LINE:26
     case controllers_Audio_upload10_route(params) =>
       call { 
         controllers_Audio_upload10_invoker.call(Audio_3.upload())
+      }
+  
+    // @LINE:27
+    case controllers_Audio_getAudio11_route(params) =>
+      call { 
+        controllers_Audio_getAudio11_invoker.call(Audio_3.getAudio())
       }
   }
 }

@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/phoenixchen/Documents/websites/MessageInTheSky/conf/routes
-// @DATE:Tue Apr 25 11:24:14 PDT 2017
+// @SOURCE:/Users/michelle/IdeaProjects/MessageInTheSky/conf/routes
+// @DATE:Sat Jun 03 11:24:58 PDT 2017
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -49,6 +49,16 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "upload"})
+        }
+      """
+    )
+  
+    // @LINE:27
+    def getAudio: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Audio.getAudio",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getaudio"})
         }
       """
     )
@@ -113,22 +123,22 @@ package controllers.javascript {
       """
     )
   
+    // @LINE:23
+    def getHistory: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Message.getHistory",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "gethistory"})
+        }
+      """
+    )
+  
     // @LINE:21
     def addMessage: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Message.addMessage",
       """
         function(content0,lat1,lon2) {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "addmessage" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("content", content0), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("lat", lat1), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("lon", lon2)])})
-        }
-      """
-    )
-  
-    // @LINE:23
-    def getMyMessage: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Message.getMyMessage",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getmymessage"})
         }
       """
     )
