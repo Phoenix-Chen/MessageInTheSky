@@ -19,11 +19,27 @@
     <div id="earth_div"></div>
     @slidebar()
     <!-- Start of Add Icon -->
-    <div id="add-message-icon" data-toggle="modal" data-target="#addMessage"></div>
+    <div class="add" id="add-message-icon" data-toggle="modal" data-target="#addMessage" style="display: block"></div>
+    <div class=" add rotate" id="bubbleInterface" style="display: block; background: none; top: 5%; left: 32%; width: 700px; height: 700px;">
+        <div class="add" style="top: 93%; left: 2%; display: block; background: none; border: 3px solid #3b9eeb; width: 120px; height: 120px;"></div>
+        <div class="add" style="top: 0%; left: 80%; display: block; background: none; border: 1.4px solid #3b9eeb; width: 190px; height: 190px;"></div>
+        <div class="add" style="top: 18%; left: 94%; display: block; background: none; border: 2px solid #3b9eeb; width: 134px; height: 134px;"></div>
+        <div class="add" style="top: 55%; left: 100%; display: block; background: none; border: 0.5px solid #3b9eeb; width: 110px; height: 110px;"></div>
+        <div class="add" style="top: 100%; left: 40%; display: block; background: none; border: 2px solid #3b9eeb; width: 110px; height: 110px;"></div>
+        <div class="add" style="top: -1%; left: -17%; display: block; background: none; border: 1px solid #3b9eeb; width: 200px; height: 200px;"></div>
+        <div class="add" style="top: 0%; left: -8%; display: block; background: none; border: 1px solid #3b9eeb; width: 110px; height: 110px;"></div>
+        <div class="add" style="top: -10%; left: -1%; display: block; background: none; border: 3px solid #3b9eeb; width: 110px; height: 110px;"></div>
+        <div class="add" style="top: -20%; left: 29%; display: block; background: none; border: 2px solid #3b9eeb; width: 144px; height: 144px;"></div>
+        <div class="add" style="top: 50%; left: -20%; display: block; background: none; border: 1px solid #3b9eeb; width: 110px; height: 110px;"></div>
+        <div class="add" style="top: 76%; left: -18%; display: block; background: none; border: 2px solid #3b9eeb; width: 188px; height: 188px;"></div>
+        <div class="add" style="top: 15%; left: -14%; display: block; background: none; border: 2px solid #3b9eeb; width: 110px; height: 110px;"></div>
+        <div class="add" style="top: 91%; left: 78%; display: block; background: none; border: 2px solid #3b9eeb; width: 175px; height: 175px;"></div>
+        <div class="bubble" style="top: 15%; left: 50%; width: 110px; height: 110px;"></div>
+    </div>
+        <div class="bubble" style="top: 5%; left: 50%; width: 200px; height: 200px;"></div>
     <div class="modal fade" id="addMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-        <div class="panel panel-upload modal-dialog">
-            <div class="panel-heading">
+        <div class="panel panel-upload modal-dialog" style = "left: 0%; top: 22%; background: none;">
+            <div class="panel-heading" style="background: none;">
                 <div class="row">
                     <div class="col-xs-6">
                         <a href="#" class="active" id="message-form-link">Text</a>
@@ -40,7 +56,9 @@
                         <form id="message-form" action="" method="post" role="form" style="display: block;">
                             <div class="form-group">
                                 <label for="addMessageTextarea">Send Your Wishes:</label>
-                                <textarea class="form-control" id="addMessageTextarea" rows="5"></textarea>
+                                <textarea class="form-control" id="addMessageTextarea" rows="5" style="background: none; border: none; box-shadow: none;
+                                    color: white; font-size: x-large;
+                                    padding: inherit; border-radius: inherit;"></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -53,7 +71,7 @@
                         <form id="audio-form" role="form" style="display: none;">
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <input type="file" id="file" name="file"/>
+                                    <input type="file" id="file" name="file" style="width: inherit; padding: inherit; font-size: 18px; box-shadow: none; padding: inherit;"/>
                                 </div>
                                 <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload Audio</button>
                             </div>
@@ -63,6 +81,7 @@
             </div>
         </div>
     </div>
+        <!--<div class="add rotate" style="display: block; background: none; top: 5%; left: 32%; width: 700px; height: 700px;"></div>-->
     <!-- End of Add Icon-->
 
     </div>
@@ -78,5 +97,10 @@
     <!-- Custom JavaScript -->
     <script src="@routes.Assets.versioned("javascripts/slidebar.js")"></script>
     <script src="@routes.Assets.versioned("javascripts/main.js")"></script>
+
+    <!--<script src="@routes.Assets.versioned("javascripts/bubble.js")"></script>
+
+    <script src="@routes.Assets.versioned("javascripts/sails.io.js")"></script>-->
+
 </body>
 </html>

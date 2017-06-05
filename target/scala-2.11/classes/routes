@@ -24,3 +24,4 @@ GET     /getmymessage               controllers.Message.getMyMessage()
 
 # Audio api
 POST    /upload                     controllers.Audio.upload()
+GET     /getaudio                   controllers.Audio.getAudio()

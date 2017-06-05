@@ -13,7 +13,7 @@ public class MySQL {
     private final static String sqlUrl = "jdbc:mysql://localhost";
     private final static String sqlDBName = "mits";
     private final static String sqlUser = "root";
-    private final static String sqlPassword = "";
+    private final static String sqlPassword = "Mits@mipe193";
 
 
     /**

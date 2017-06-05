@@ -1,4 +1,4 @@
 [0m[[0mdebug[0m] [0mCopy resource mappings: [0m
-[0m[[0mdebug[0m] [0m	(/Users/phoenixchen/Documents/websites/MessageInTheSky/conf/application.conf,/Users/phoenixchen/Documents/websites/MessageInTheSky/target/scala-2.11/classes/application.conf)[0m
-[0m[[0mdebug[0m] [0m	(/Users/phoenixchen/Documents/websites/MessageInTheSky/conf/logback.xml,/Users/phoenixchen/Documents/websites/MessageInTheSky/target/scala-2.11/classes/logback.xml)[0m
-[0m[[0mdebug[0m] [0m	(/Users/phoenixchen/Documents/websites/MessageInTheSky/conf/routes,/Users/phoenixchen/Documents/websites/MessageInTheSky/target/scala-2.11/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/Users/Ishan/IdeaProjects/MessageInTheSky/conf/application.conf,/Users/Ishan/IdeaProjects/MessageInTheSky/target/scala-2.11/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Users/Ishan/IdeaProjects/MessageInTheSky/conf/logback.xml,/Users/Ishan/IdeaProjects/MessageInTheSky/target/scala-2.11/classes/logback.xml)[0m
+[0m[[0mdebug[0m] [0m	(/Users/Ishan/IdeaProjects/MessageInTheSky/conf/routes,/Users/Ishan/IdeaProjects/MessageInTheSky/target/scala-2.11/classes/routes)[0m

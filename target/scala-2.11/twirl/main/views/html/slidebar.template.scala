@@ -89,8 +89,8 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 object slidebar extends slidebar_Scope0.slidebar
               /*
                   -- GENERATED --
-                  DATE: Tue Apr 25 11:24:14 PDT 2017
-                  SOURCE: /Users/phoenixchen/Documents/websites/MessageInTheSky/app/views/slidebar.scala.html
+                  DATE: Mon May 22 19:13:41 PDT 2017
+                  SOURCE: /Users/Ishan/IdeaProjects/MessageInTheSky/app/views/slidebar.scala.html
                   HASH: 15f4a97dd0731b7071799a114ea80a97191cbc6e
                   MATRIX: 833->0|940->81|954->87|1019->132
                   LINES: 32->1|36->5|36->5|36->5
