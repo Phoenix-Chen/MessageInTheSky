@@ -150,8 +150,8 @@ var setMessages = function() {
 
 function addMarker(lon, lat, message) {
     //alert(typeof(lon));
-    var marker = WE.marker([lat, lon], '/assets/images/custom_pin1.png', 25, 41).addTo(earth);
-    marker.bindPopup("<span style='font-size:12px;color:#999'>" + message + "</span>", {
+    var marker = WE.marker([lat, lon], '/assets/images/ring.png', 40, 40).addTo(earth);
+    marker.bindPopup("<span style='font-size:18px;color:white'>" + message + "</span>", {
         maxWidth: 150,
         closeButton: false,
     });
@@ -208,7 +208,7 @@ var setAudio = function() {
 }
 
 function addAudioMarker(lon, lat, audio) {
-    var marker = WE.marker([lat, lon], '/assets/images/custom_pin2.png', 25, 41).addTo(earth);
+    var marker = WE.marker([lat, lon], '/assets/images/ring.png', 40, 40).addTo(earth);
     //marker.bindPopup("<audio src='http://localhost:9000/assets/sha1/" + audio +".mp3' preload='auto' />", {maxWidth: 150, closeButton: true});
     marker.bindPopup("<img src='/assets/images/favicon.png' id='play-" + audio + "'>", {
         maxWidth: 50,
