@@ -5,6 +5,7 @@
 # An example controller showing a sample home page
 GET     /index                      controllers.HomeController.index()
 GET     /                           controllers.HomeController.main()
+GET     /admin                      controllers.HomeController.admin()
 
 # Javascript Routes
 GET     /javascriptRoutes           controllers.HomeController.javascriptRoutes()
@@ -20,7 +21,9 @@ POST    /logout                     controllers.Account.logout()
 # Message api
 POST    /addmessage                 controllers.Message.addMessage(content: String, lat: String, lon: String)
 GET     /getmessage                 controllers.Message.getMessage()
-GET     /getmymessage               controllers.Message.getMyMessage()
+GET     /gethistory                 controllers.Message.getHistory()
+GET     /getnegmessage              controllers.Message.getNegativeMessage()
+POST    /deletemessage              controllers.Message.deleteNegativeMessage(post_id: String)
 
 # Audio api
 POST    /upload                     controllers.Audio.upload()

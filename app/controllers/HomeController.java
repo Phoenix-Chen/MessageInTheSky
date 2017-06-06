@@ -2,7 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
-import play.routing.JavaScriptReverseRouter;
+
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -16,33 +16,52 @@ public class HomeController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
-    public Result index() {
+    public static Result index() {
         String se = session("mitsconnect");
         if (se != null) {
+            if (se.equals("1")) {
+                return redirect("/admin");
+            }
             return redirect("/");
         }
         return ok(views.html.index.render());
     }
 
-    public Result main() {
+    public static Result main() {
         String se = session("mitsconnect");
         if (se == null) {
             return redirect("/index");
         }
+        if (se.equals("1")) {
+            return redirect("/admin");
+        }
         return ok(views.html.main.render());
     }
 
-    public Result javascriptRoutes() {
+    public static Result admin() {
+        String se = session("mitsconnect");
+        if (se != null) {
+            if (se.equals("1")) {
+                return ok(views.html.admin.render());
+            }
+            return redirect("/");
+        }
+        return redirect("/index");
+    }
+
+    public static Result javascriptRoutes() {
         return ok(
-                JavaScriptReverseRouter.create("JsRoutes",
-                        routes.javascript.Account.login(),
-                        routes.javascript.Account.signup(),
-                        routes.javascript.Account.logout(),
-                        routes.javascript.Message.addMessage(),
-                        routes.javascript.Message.getMessage(),
-                        routes.javascript.Message.getMyMessage(),
-                        routes.javascript.Audio.upload(),
-                        routes.javascript.Audio.getAudio()
+                Routes.javascriptRouter("JsRoutes",
+                        controllers.routes.javascript.Account.login(),
+                        controllers.routes.javascript.Account.signup(),
+                        controllers.routes.javascript.Account.logout(),
+                        controllers.routes.javascript.Message.addMessage(),
+                        controllers.routes.javascript.Message.getMessage(),
+                        controllers.routes.javascript.Message.getHistory(),
+                        controllers.routes.javascript.Message.getNegativeMessage(),
+                        controllers.routes.javascript.Message.deleteNegativeMessage(),
+                        controllers.routes.javascript.Audio.upload(),
+                        controllers.routes.javascript.Audio.getAudio()
                 )
         ).as("text/javascript");
     }

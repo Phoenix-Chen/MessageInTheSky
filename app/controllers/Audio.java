@@ -34,9 +34,9 @@ public class Audio extends Controller {
 //    }
 
 
-    public Result upload() {
-        MultipartFormData<File> body = request().body().asMultipartFormData();
-        FilePart<File> audio = body.getFile("file");
+    public static Result upload() {
+        MultipartFormData body = request().body().asMultipartFormData();
+        FilePart audio = body.getFile("file");
         double longitude = Double.parseDouble(form().bindFromRequest().get("lon"));
         double latitude = Double.parseDouble(form().bindFromRequest().get("lat"));
         if (audio != null) {
@@ -152,7 +152,7 @@ public class Audio extends Controller {
     }
 
 
-    public Result getAudio() {
+    public static Result getAudio() {
         return ok(MySQL.getAudio());
     }
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Message In The Sky</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="@routes.Assets.versioned("stylesheets/admin.css")" rel="stylesheet">
+
+    <!-- Javascript Routes -->
+    <script type="text/javascript" src='@routes.HomeController.javascriptRoutes()'></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    MITS Admin
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul id="navbar-options" class="nav navbar-nav navbar-right">
+                    <li><a id="logoutBtn"> Logout </a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 table-responsive">
+                <table class="table table-bordered table-hover table-sortable">
+                    <thead>
+                        <tr >
+                            <th class="text-center">
+                                Message
+                            </th>
+                            <th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="message-container">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="@routes.Assets.versioned("javascripts/jquery-3.1.0.min.js")"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="@routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="@routes.Assets.versioned("javascripts/admin.js")"></script>
+</body>
+</html>

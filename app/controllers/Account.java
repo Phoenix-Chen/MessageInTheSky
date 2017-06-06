@@ -16,7 +16,7 @@ import java.util.Base64;
  */
 public class Account extends Controller {
 
-    private final SecureRandom random = new SecureRandom();
+    private static final SecureRandom random = new SecureRandom();
 
     /**
      *
@@ -24,7 +24,7 @@ public class Account extends Controller {
      * @param password
      * @return
      */
-    public Result login(String email, String password){
+    public static Result login(String email, String password){
         // Check if email exist in database
         if (!MySQL.accountExist(email))
             return ok("false");
@@ -61,7 +61,7 @@ public class Account extends Controller {
      * @param password
      * @return
      */
-    public Result signup(String email, String password){
+    public static Result signup(String email, String password){
         // Check if the email already exist in database
         if (MySQL.accountExist(email))
             return ok("false");
@@ -100,7 +100,7 @@ public class Account extends Controller {
      *
      * @return
      */
-    public Result logout() {
+    public static Result logout() {
         try {
             session().remove("mitsconnect");
         } catch (Exception e) {
