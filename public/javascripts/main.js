@@ -66,11 +66,11 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             beforeSend: function(data) {
-                alert('Are you sure you want to upload document?');
+                //alert('Are you sure you want to upload document?');
             },
             success: function(data) {
                 //call your jQuery action here
-                alert('Upload completed: ' + data);
+                //alert('Upload completed: ' + data);
                 location.reload();
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -123,26 +123,26 @@ WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
     // Start a simple rotation animation
 
 
-    //earth.setView([51.505, 0], 3);
-    earth.setView([40, 2], 5);
+    earth.setView([51.505, 0], 3);
+    //earth.setView([40, 2], 5);
 
 
     //var first_enter =
 //alert(earth.getZoom()*10);
-        var before = null;
-        requestAnimationFrame(function animate(now) {
-
-
-            var c = earth.getPosition();
-            var elapsed = before ? now - before : 0;
-            before = now;
-            //earth.setCenter([c[0], c[1] + 0.1 * (elapsed / 400)]);
-            earth.setView([c[0], c[1] + 0.1 * (elapsed / 400)]);
-            requestAnimationFrame(animate);
-            //earth.setHeading(300);
-            //earth.setTilt(50);
-            earth.setTilt(earth.getZoom()*9);
-        });
+//        var before = null;
+//        requestAnimationFrame(function animate(now) {
+//
+//
+//            var c = earth.getPosition();
+//            var elapsed = before ? now - before : 0;
+//            before = now;
+//            //earth.setCenter([c[0], c[1] + 0.1 * (elapsed / 400)]);
+//            earth.setView([c[0], c[1] + 0.1 * (elapsed / 400)]);
+//            requestAnimationFrame(animate);
+//            //earth.setHeading(300);
+//            //earth.setTilt(50);
+//            earth.setTilt(earth.getZoom()*9);
+//        });
     //setMessages();
     //console.log(lon);
 }
@@ -166,11 +166,17 @@ var setMessages = function() {
 
 function addMarker(lon, lat, message) {
     //alert(typeof(lon));
-    var marker = WE.marker([lat, lon], '/assets/images/custom_pin1.png', 25, 41).addTo(earth);
-    marker.bindPopup("<b>Message In The Sky</b><br></br><span style='font-size:10px;color:#999'>" + message + "</span>", {
-        maxWidth: 150,
-        closeButton: true
-    });
+    var marker = WE.marker([lat, lon], '/assets/images/ring.png', 40, 40).addTo(earth);
+        marker.bindPopup("<span style='font-size:18px;color:white'>" + message + "</span>", {
+            maxWidth: 150,
+            closeButton: false,
+        });
+        marker.on('mouseover', function(event){
+            marker.openPopup();
+        });
+        marker.on('mouseout', function(event){
+            marker.closePopup();
+        });
     //alert(message);
 }
 
@@ -217,15 +223,24 @@ var setAudio = function() {
 }
 
 function addAudioMarker(lon, lat, audio) {
-    var marker = WE.marker([lat, lon], '/assets/images/custom_pin2.png', 25, 41).addTo(earth);
+     var marker = WE.marker([lat, lon], '/assets/images/ring.png', 40, 40).addTo(earth);
     //marker.bindPopup("<audio src='http://localhost:9000/assets/sha1/" + audio +".mp3' preload='auto' />", {maxWidth: 150, closeButton: true});
     marker.bindPopup("<img src='/assets/images/favicon.png' id='play-" + audio + "'>", {
         maxWidth: 50,
-        closeButton: true
+        closeButton: false
     });
-    $('#play-' + audio).click(function() {
-        playAudio(audio);
-    });
+    marker.on('mouseover', function(event){
+            marker.openPopup();
+        });
+        marker.on('mouseout', function(event){
+            marker.closePopup();
+        });
+
+        $('#play-' + audio).mouseover(function() {
+        //$('#play-' + audio).click(function() {
+            playAudio(audio);
+        });
+
 }
 
 function playAudio(filename) {

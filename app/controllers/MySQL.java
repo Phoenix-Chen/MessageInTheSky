@@ -13,7 +13,7 @@ public class MySQL {
     private final static String sqlUrl = "jdbc:mysql://localhost";
     private final static String sqlDBName = "mits";
     private final static String sqlUser = "root";
-    private final static String sqlPassword = "";
+    private final static String sqlPassword = "Mits@mipe193";
 
 
     /**
@@ -111,7 +111,7 @@ public class MySQL {
         createTable("CREATE TABLE negative_message (post_id INT NOT NULL PRIMARY KEY)");
 
         // Create Super User
-        Account.signup("a@a.com","Aa>11111");
+        Account.signup("jdyoung@ucdavis.edu","Mits@mipe193");
     }
 
     private static boolean createTable(String query) {
