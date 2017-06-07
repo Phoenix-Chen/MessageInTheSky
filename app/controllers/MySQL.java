@@ -114,6 +114,11 @@ public class MySQL {
         Account.signup("jdyoung@ucdavis.edu","Mits@mipe193");
     }
 
+    /**
+     * A generic function from creating tables
+     * @param query
+     * @return
+     */
     private static boolean createTable(String query) {
         Connection conn = null;
         Statement stmt = null;

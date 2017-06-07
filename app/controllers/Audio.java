@@ -28,12 +28,10 @@ import static play.data.Form.form;
 
 public class Audio extends Controller {
 
-//    public Result upload() {
-//        File file = request().body().asRaw().asFile();
-//        return ok("File uploaded");
-//    }
-
-
+    /**
+     * Function for uploads audio
+     * @return
+     */
     public static Result upload() {
         MultipartFormData body = request().body().asMultipartFormData();
         FilePart audio = body.getFile("file");
@@ -67,8 +65,7 @@ public class Audio extends Controller {
     /*
      * Creates a new name using sha1 hasing
      */
-    public static String sha_1(String filename)
-    {
+    public static String sha_1(String filename) {
         int bytesRead = 0;
         File file = new File("public/audio", filename);
         byte[] buffer = new byte[8192];
@@ -100,31 +97,19 @@ public class Audio extends Controller {
         return "";
     }
 
-
-
+    /**
+     *
+     * @param array
+     * @return
+     */
     private static String toHexString(byte[] array) {
         return DatatypeConverter.printHexBinary(array).toLowerCase();
     }
-//    /*
-//     * Takes a string
-//     * and returns the hex representation
-//     */
-//    public byte[] hex_cast(String hashname)
-//    {
-//        int length = hashname.length();
-//        byte[] hex_name = new byte [length/2];
-//        for (int i = 0; i < length; i += 2) {
-//            hex_name[i / 2] = (byte) ((Character.digit(hashname.charAt(i), 16) << 4)
-//                    + Character.digit(hashname.charAt(i + 1), 16));
-//        }
-//        return hex_name;
-//    }
 
     /*
      * Changes the name of the file to it's SHA1 name
      */
-    public static void rename_file(String oldname, String newname)
-    {
+    public static void rename_file(String oldname, String newname) {
         File file = new File("public/audio", oldname);
         File file2 = new File("public/audio", newname);
 
@@ -139,8 +124,7 @@ public class Audio extends Controller {
      * Moves file to the specified folder
      * Need to include *full* path
      */
-    public static void move_file_to(String filename)
-    {
+    public static void move_file_to(String filename) {
         File fromFile = new File("public/audio", filename);
         Path source = fromFile.toPath();
         Path newdir = Paths.get("public/sha1");
@@ -151,7 +135,11 @@ public class Audio extends Controller {
         }
     }
 
-
+    /**
+     * Get audio info as JSON from MySQL.java
+     * (Further development: Do a format/content checking before return)
+     * @return
+     */
     public static Result getAudio() {
         return ok(MySQL.getAudio());
     }

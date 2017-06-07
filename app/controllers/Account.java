@@ -19,7 +19,7 @@ public class Account extends Controller {
     private static final SecureRandom random = new SecureRandom();
 
     /**
-     *
+     * Function for user login.
      * @param email
      * @param password
      * @return
@@ -56,7 +56,7 @@ public class Account extends Controller {
     }
 
     /**
-     *
+     * Function for user sign up.
      * @param email
      * @param password
      * @return
@@ -97,7 +97,7 @@ public class Account extends Controller {
     }
 
     /**
-     *
+     * Function for user logout.
      * @return
      */
     public static Result logout() {
