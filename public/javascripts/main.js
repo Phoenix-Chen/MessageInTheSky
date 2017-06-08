@@ -25,9 +25,25 @@ function updateLocation(position) {
 
 
 $(document).ready(function(){
+    $('#bubbleInterface').hide();
     getLocation();
     initEarth();
-    $('#addMessageBtn').click(function(){addMessage();});
+    $('#add-message-icon').click(function(){
+        //$('#addMessage').delay(300).fadeIn(300);
+        $('#bubbleInterface').delay(250).fadeIn(250);
+    });
+
+    $('#bubbleCancelButton').click(function(){
+        $('#bubbleInterface').delay(250).fadeOut(250);
+    });
+
+    /*$(window).click(function (){
+        location.reload();
+    });*/
+
+    $('#addMessageBtn').click(function () {
+        addMessage();
+    });
 
     //addMarker(38,121,'233333');
     //console.log(lon);
@@ -64,14 +80,18 @@ $(document).ready(function(){
            contentType: false,
            processData: false,
            beforeSend: function (data) {
-             alert('Are you sure you want to upload document?');
+             //alert('Are you sure you want to upload document?');
            },
            success: function (data) {
              //call your jQuery action here
              alert('Upload completed: ' + data);
+               $('#bubbleInterface').delay(250).fadeOut(250);
+               location.reload();
            },
            error: function (jqXHR, textStatus, errorThrown) {
              alert(textStatus + ': ' + errorThrown);
+             $('#bubbleInterface').delay(250).fadeOut(250);
+             location.reload();
            }
         });
         return false;
@@ -157,6 +177,7 @@ function addMessage() {
             if (data == 'true') {
                 //alert("Welcome!");
                 location.reload();
+                $('#bubbleInterface').hide();
             } else {
                 alert("Sorry, your wish cannot be sent...");
             }
@@ -175,7 +196,7 @@ var setAudio = function() {
                        addAudioMarker(parseFloat(audio[i].latitude), parseFloat(audio[i].longitude), audio[i].audio);
                    }
            } else {
-               alert("Sorry, data cannot be load...");
+               alert("Sorry, data cannot be loaded...");
            }
        }
    });

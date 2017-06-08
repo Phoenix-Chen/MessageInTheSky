@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $('#signupBtn').click(function(){signup();});
-    $('#loginBtn').click(function(){login();});
+    $('#signupBtn').click(function(){$('#bubbleInterface').hide(); signup();});
+    $('#loginBtn').click(function(){$('#bubbleInterface').hide(); login();});
 });
 
 function login() {
